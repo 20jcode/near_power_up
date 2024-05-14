@@ -3,6 +3,7 @@ use near_sdk::{AccountId, env, log, near, near_bindgen};
 use near_sdk::borsh::{self, BorshDeserialize,BorshSerialize};
 use near_sdk::env::log_str;
 
+
 #[near_bindgen] //니어 초기화 매크로?
 #[derive(BorshDeserialize, BorshSerialize)] //직렬화
 pub struct NearPowerGame {
@@ -28,13 +29,13 @@ impl NearPowerGame {
     pub fn set_base_money(&mut self,change_value : i32) {
         //todo : contract owner verify
         self.user_base_money = change_value;
-        log_str("change user base money : ".pushstr(change_value.to_string()));
+        log_str("change user base money");
 
     }
     pub fn set_base_power(&mut self,change_value : i32){
         //todo : contract owner verify
         self.user_base_power = change_value;
-        log_str("change user base power : ".pushstr(change_value.to_string()));
+        log_str("change user base power");
     }
 
     //신규유저 생성
@@ -52,13 +53,13 @@ impl NearPowerGame {
     }
 
     pub fn get_user(&self,user_id_str : &String) -> String {
-        match self.user_lists.get(user_id_str) {
+        return match self.user_lists.get(user_id_str) {
             Some(ref ugd ) => {
-                return ugd.id.to_string();
+                ugd.id.to_string()
             }
 
             _ => {
-                return "0".parse().unwrap();
+                "0".parse().unwrap()
             }
         }
     }
@@ -96,6 +97,6 @@ mod tests {
         let mut contract = NearPowerGame::default();
         let user_id = "1";
         contract.create_user();
-        assert_eq!(1,contract.get_user(&user_id.to_string()));
+        assert_eq!(user_id,contract.get_user(&user_id.to_string()));
     }
 }
