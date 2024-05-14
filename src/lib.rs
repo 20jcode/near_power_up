@@ -26,9 +26,15 @@ impl Default for NearPowerGame {
 #[near_bindgen]
 impl NearPowerGame {
     pub fn set_base_money(&mut self,change_value : i32) {
-        //todo : contract owner vertify
+        //todo : contract owner verify
         self.user_base_money = change_value;
         log_str("change user base money : ".pushstr(change_value.to_string()));
+
+    }
+    pub fn set_base_power(&mut self,change_value : i32){
+        //todo : contract owner verify
+        self.user_base_power = change_value;
+        log_str("change user base power : ".pushstr(change_value.to_string()));
 
     }
 }
