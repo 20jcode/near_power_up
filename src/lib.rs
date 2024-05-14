@@ -35,8 +35,22 @@ impl NearPowerGame {
         //todo : contract owner verify
         self.user_base_power = change_value;
         log_str("change user base power : ".pushstr(change_value.to_string()));
-
     }
+
+    //신규유저 생성
+    pub fn create_user(&mut self){
+        let user_value = self.user_count +1;
+        self.user_count = user_value;
+        //좀 더 더하기를 편하게 하는 방법은 없는지?
+
+        let user_game_data = UserGameData::new_user(
+            self.user_count,
+            self.user_base_money,
+            self.user_base_power
+        );
+        self.user_lists.insert(&user_game_data.id.to_string(),&user_game_data);
+    }
+
 }
 
 #[derive( BorshSerialize,BorshDeserialize)]
@@ -48,7 +62,7 @@ pub struct UserGameData {
 }
 
 impl UserGameData {
-    pub fn new_user(&self,user_count : i16,
+    pub fn new_user(user_count : i16,
                     user_base_money : i32,
                     user_base_power : i32)->Self {
         Self {
@@ -59,3 +73,4 @@ impl UserGameData {
         }
     }
 }
+
