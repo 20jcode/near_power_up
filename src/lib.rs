@@ -51,6 +51,19 @@ impl NearPowerGame {
         self.user_lists.insert(&user_game_data.id.to_string(),&user_game_data);
     }
 
+    pub fn get_user(&self,user_id_str : &String) -> String {
+        match self.user_lists.get(user_id_str) {
+            Some(ref ugd ) => {
+                return ugd.id.to_string();
+            }
+
+            _ => {
+                return "0".parse().unwrap();
+            }
+        }
+    }
+
+
 }
 
 #[derive( BorshSerialize,BorshDeserialize)]
