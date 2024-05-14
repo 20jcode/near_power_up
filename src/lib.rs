@@ -87,3 +87,15 @@ impl UserGameData {
     }
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn create_user_test(){
+        let mut contract = NearPowerGame::default();
+        let user_id = "1";
+        contract.create_user();
+        assert_eq!(1,contract.get_user(&user_id.to_string()));
+    }
+}
