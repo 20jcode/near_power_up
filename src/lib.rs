@@ -5,15 +5,19 @@ use near_sdk::borsh::{self, BorshDeserialize,BorshSerialize};
 #[near_bindgen] //니어 초기화 매크로?
 #[derive(BorshDeserialize, BorshSerialize)] //직렬화
 pub struct NearPowerGame {
-    user_lists: UnorderedMap<String,UserGameData>,
-    user_count: i16
+    user_lists: UnorderedMap<String, UserGameData>,
+    user_count: i16,
+    user_base_power: i32,
+    user_base_money : i32,
 }
 
 impl Default for NearPowerGame {
     fn default() -> Self {
         Self {
             user_lists : UnorderedMap::new(b"user_lists".to_vec()),
-            user_count : 0
+            user_count : 0,
+            user_base_money : 5,
+            user_base_power : 0,
         }
     }
 }
