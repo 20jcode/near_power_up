@@ -1,6 +1,7 @@
 use near_sdk::collections::UnorderedMap; //5.1.0 ver
 use near_sdk::{AccountId, env, log, near, near_bindgen};
 use near_sdk::borsh::{self, BorshDeserialize,BorshSerialize};
+use near_sdk::env::log_str;
 
 #[near_bindgen] //니어 초기화 매크로?
 #[derive(BorshDeserialize, BorshSerialize)] //직렬화
@@ -12,7 +13,7 @@ pub struct NearPowerGame {
 }
 
 impl Default for NearPowerGame {
-    fn default() -> Self {
+    fn default() -> Self { //초기 init
         Self {
             user_lists : UnorderedMap::new(b"user_lists".to_vec()),
             user_count : 0,
@@ -24,7 +25,12 @@ impl Default for NearPowerGame {
 
 #[near_bindgen]
 impl NearPowerGame {
+    pub fn set_base_money(&mut self,change_value : i32) {
+        //todo : contract owner vertify
+        self.user_base_money = change_value;
+        log_str("change user base money : ".pushstr(change_value.to_string()));
 
+    }
 }
 
 #[derive( BorshSerialize,BorshDeserialize)]
