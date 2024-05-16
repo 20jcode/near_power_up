@@ -18,4 +18,12 @@ impl UserGameData {
             owner : env::signer_account_id()
         }
     }
+
+    pub fn get_near_power(&self) -> i32 {
+        return self.near_power
+    }
+
+    pub fn get_near_money(&self) -> i32 {
+        return self.near_money
+    }
 }
