@@ -26,4 +26,8 @@ impl UserGameData {
     pub fn get_near_money(&self) -> i32 {
         return self.near_money
     }
+
+    pub fn get_user_id(&self) -> String {
+        return self.owner.to_string();
+    }
 }
