@@ -30,4 +30,8 @@ impl UserGameData {
     pub fn get_user_id(&self) -> String {
         return self.owner.to_string();
     }
+
+    pub fn power_up(&mut self) {
+        self.near_power : self.near_power +1;
+    }
 }
